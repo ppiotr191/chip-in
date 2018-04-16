@@ -1,0 +1,114 @@
+  body {
+    font-size: 34px;  
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .fu{
+    font-family: 'Ubuntu', sans-serif; 
+  }
+  .fs-20{
+      font-size:20px;
+  }
+  .ta-c{
+      text-align:center;
+  }
+
+  form {
+    margin: 20px auto;
+  }
+  
+  fieldset {
+    position: relative;
+    border: none;  
+    /* margin : 0;
+    padding: 0;
+    width:100%; */
+  }
+  
+  label {
+    position: absolute;  
+    top: 23px;
+    color: rgba(0, 0, 0, 0.3);
+    transform-origin: left;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    font-size: 24px;
+  }
+  
+  input:focus ~ label {
+    color: #2E4A62;  
+  }
+  
+  input:focus ~ label,input:valid ~ label {
+    top: 0;
+    transform: scale(0.6, 0.6);
+  }
+  
+  input {
+    line-height: 40px;
+    font-size: 20px;  
+    width: 100%;
+    border: none;  
+    margin-top: 10px;
+  }
+  
+  input:focus {
+    outline: none;
+  }
+  
+  .after {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, #2E4A62 50%, transparent 50%);
+    background-color: rgba(0, 0, 0, 0.3);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: all 0.6s ease;
+  }
+  
+  input:focus ~ .after {
+    background-position: 0 0;
+  }
+  
+  .btn {
+    display:inline-block;
+    color: #2E4A62;
+    font-size: 20px;
+    padding: 20px 35px 20px 35px;
+    border: solid #2E4A62 3px;
+    text-decoration: none;
+    background-color:white;
+  }
+  
+  .btn:hover {
+    text-decoration: none;
+  }
+
+  .form-options{
+    margin : 12px;
+    text-align:right;
+    font-size:28px;
+  }
+
+  .form-options > div > .fa-trash-alt{
+        color : #E94B3C;
+        cursor : pointer;
+  }
+
+  .button-container{
+      margin: 15px;
+      text-align:center;
+  }
+
+  .fs-20{
+    margin-left: 10px;
+    margin-top: 30px;
+  }
+  .remove-item{
+    display:inline-block;
+  }
+
+  .error{
+    color : #E94B3C;
+  }
+  
