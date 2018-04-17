@@ -1,43 +1,60 @@
 <h1 class="fu ta-c">Zrzutka</h1>
-<form (ngSubmit)="submit(target)" [formGroup]="form" autocomplete="off">
-    <div formArrayName="items" *ngFor="let item of form.get('items').controls; let i = index;">
-        <div [formGroupName]="i">
-            <fieldset>
-                <input name="name" formControlName="name" type="text" required/>
-                <label for="sum" class="fu">Nazwa</label>
-                <div class="after"></div>
-            </fieldset>
-            <fieldset>
-                <input name="price" formControlName="price" type="number" required/>
-                <label for="price" class="fu">Zapłacił</label>
-                <div class="after"></div>
-            </fieldset>
-            <fieldset>
-                <input name="haveToPay" formControlName="haveToPay" type="number" required/>
-                <label for="haveToPay" class="fu">Powinien zapłacić</label>
-                <div class="after"></div>
-            </fieldset>
-            <div class="form-options">
-                <div (click)="removeItem(i)" style="display:inline-block;">
-                    <i class="fas fa-trash-alt"></i>
+<div class="grid-container">
+    <div class="grid-item-1">
+        <form (ngSubmit)="submit(target)" [formGroup]="form" autocomplete="off">
+            <div formArrayName="items" *ngFor="let item of form.get('items').controls; let i = index;">
+                <div class="box" [formGroupName]="i">
+                    <div class="form-options">
+                        <div (click)="removeItem(i)" style="display:inline-block;">
+                            &times;
+                        </div>
+                    </div>
+                    <fieldset>
+                        <input name="name" formControlName="name" type="text" required/>
+                        <label for="name" class="fu">Nazwa</label>
+                        
+                        <div class="after"></div>
+                        <div class="error fu" *ngIf="item.controls.name.touched && item.controls.name.invalid" >
+                            To pole jest wymagane
+                        </div>
+
+                    </fieldset>
+                    <fieldset>
+                        <input name="price" formControlName="price" type="number" required/>
+                        <label for="price" class="fu">Zapłacił</label>
+                        <div class="after"></div>
+                        <div class="error fu" *ngIf="item.controls.price.touched && item.controls.price.invalid" >
+                            To pole jest wymagane
+                        </div>
+                        
+                    </fieldset>
+                    <fieldset>
+                        <input name="haveToPay" formControlName="haveToPay" type="number" required/>
+                        <label for="haveToPay" class="fu">Powinien zapłacić</label>
+                        <div class="after"></div>
+                        <div class="error fu" *ngIf="item.controls.haveToPay.touched && item.controls.haveToPay.invalid" >
+                            To pole jest wymagane
+                        </div>
+                        
+                    </fieldset>
                 </div>
             </div>
-            <hr/>
-        </div>
-    </div>
-    <div class="button-container">
-            <a class="btn fu" (click)="addItem()" >Dodaj osobe</a>
-        </div>
-    <div class="button-container">
-        <button class="btn fu" type="submit">Oblicz</button>
-    </div>
-</form>
-<div class="error fu fs-20 ta-c" [hidden]="!messageIsShown" >Proszę o wypełnienie wszystkich pól</div>
-<div class="result-cointainer">
-    <div class="result-container fs-20" *ngFor="let result of resultList; let i = index"  >
-            <div class="fu fs-20">
-                "{{ getNameByID(result.personID)}}" winny jest osobie "{{getNameByID(result.toPerson)}}" - {{result.amount}}
+            <div class="button-container">
+                <button class="btn fu w-200" (click)="addItem($event)" >Dodaj osobę</button>
+                <button class="btn fu w-200" type="submit">Oblicz</button>
             </div>
+        </form>
+    </div>
+    <div class="grid-item-2">
+            <div class="result-cointainer">
+                    <div class="result-container fs-20" *ngFor="let result of resultList; let i = index"  >
+                            <div class="fu fs-20">
+                                "{{ getNameByID(result.personID)}}" winny jest osobie "{{getNameByID(result.toPerson)}}" - {{result.amount}}
+                            </div>
+                    </div>
+            </div>
+        <div #target></div>
     </div>
 </div>
-<div #target></div>
+
+

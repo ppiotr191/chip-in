@@ -1,6 +1,6 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Person } from '../mapped_classes/person';
-import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { ChipInService} from './services/chip-in.service';
 import { Observable } from 'rxjs/Observable';
 
@@ -17,8 +17,7 @@ export class AddlistComponent implements OnInit {
   resultList : any = [];
   target : any;
   finish : Observable<string>;
-  canScrollDown : boolean = false;
-  messageIsShown : boolean = false;
+  isSubmited : boolean = false;
 
   getNameByID(id: number): any {
     let person:Person =  this.personList.filter(function(person){
@@ -54,10 +53,10 @@ export class AddlistComponent implements OnInit {
 
   submit(element) : void{
     if (!this.form.valid){
-      this.messageIsShown = true;
+      this.validateFormArray();
       return;
     }
-    this.messageIsShown = false;
+    this.isSubmited = true;
     this.finish = new Observable( () => {
       element.scrollIntoView({behavior:"smooth"});
     });
@@ -85,7 +84,8 @@ export class AddlistComponent implements OnInit {
     this.items.removeAt(index);
   }
 
-  addItem(): void {
+  addItem(event): void {
+    event.preventDefault();
     this.items = this.form.get('items') as FormArray;
     this.items.push(this.createItem());
   }
@@ -98,9 +98,24 @@ export class AddlistComponent implements OnInit {
   }
 
   public ngAfterViewChecked(): void {
-      if (this.finish){
+      if (this.isSubmited){
         this.finish.subscribe();
+        this.isSubmited = false;
       }
   }       
-
+  validateFormArray() {  
+      this.items.controls.forEach((formGroup: FormGroup) => {
+          this.validateAllFormFields(formGroup);
+      })      
+  }
+  validateAllFormFields(formGroup: FormGroup) {         
+  Object.keys(formGroup.controls).forEach(field => { 
+    const control = formGroup.get(field);           
+    if (control instanceof FormControl) {          
+      control.markAsTouched({ onlySelf: true });
+    } else if (control instanceof FormGroup) {      
+      this.validateAllFormFields(control);        
+    }
+  });
+}
 }

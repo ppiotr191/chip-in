@@ -2,15 +2,16 @@
     font-size: 34px;  
     font-family: 'Ubuntu', sans-serif;
   }
-  
-  .fu{
-    font-family: 'Ubuntu', sans-serif; 
-  }
-  .fs-20{
-      font-size:20px;
-  }
-  .ta-c{
-      text-align:center;
+
+  .box{
+    position:relative;
+    padding: 10px 20px 20px 20px;
+    background-color: #fefefe;
+    margin: 5% auto 10% auto;
+    webkit-box-shadow: 0 1px 4px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 1px 4px rgba(0,0,0,.1);
+    box-shadow: 0 1px 4px rgba(0,0,0,.1);
+    width: 80%;
   }
 
   form {
@@ -20,9 +21,9 @@
   fieldset {
     position: relative;
     border: none;  
-    /* margin : 0;
+    margin : 16px 0px;
     padding: 0;
-    width:100%; */
+
   }
   
   label {
@@ -32,7 +33,7 @@
     transform-origin: left;
     transition: all 0.3s ease;
     pointer-events: none;
-    font-size: 24px;
+    font-size: 20px;
   }
   
   input:focus ~ label {
@@ -71,23 +72,29 @@
   }
   
   .btn {
-    display:inline-block;
+    display:block;
     color: #2E4A62;
     font-size: 20px;
-    padding: 20px 35px 20px 35px;
+    padding: 15px 25px 15px 25px;
     border: solid #2E4A62 3px;
     text-decoration: none;
     background-color:white;
   }
-  
+  .button-container{
+    text-align:center;
+  }
+  .button-container > a, .button-container > button{
+      margin:10px auto;
+  }
   .btn:hover {
     text-decoration: none;
   }
 
   .form-options{
-    margin : 12px;
-    text-align:right;
-    font-size:28px;
+    position:absolute;
+    right: 9px;
+    top: 0px;
+    font-size: 26px;
   }
 
   .form-options > div > .fa-trash-alt{
@@ -100,15 +107,39 @@
       text-align:center;
   }
 
-  .fs-20{
-    margin-left: 10px;
-    margin-top: 30px;
-  }
   .remove-item{
     display:inline-block;
   }
 
   .error{
+    margin-top : 3px;
     color : #E94B3C;
   }
+
+  .result-container{
+    margin-top: 17px;
+  }
+  .grid-container{
+    display: grid;
+    grid-template-columns: auto auto;
+  }
   
+  @media only screen and (max-width: 600px) {
+    .grid-container{
+      display: grid;
+      grid-template-columns: auto;
+    }
+  }
+
+  .fu{
+    font-family: 'Ubuntu', sans-serif; 
+  }
+  .fs-20{
+      font-size:20px;
+  }
+  .ta-c{
+      text-align:center;
+  }
+  .w-200{
+    width: 200px;
+  }
