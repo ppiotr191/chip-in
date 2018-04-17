@@ -44,7 +44,6 @@ describe('AddlistComponent', () => {
     component.addToPersonList("Jessi", 120, 50);
     component.addToPersonList("Czarek", 120, 50);    
     let name = component.getNameByID(2);
-    console.log(name);
     expect(name).toBe("Czarek");
-  });
+  });  
 });

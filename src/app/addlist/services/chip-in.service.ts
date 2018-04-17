@@ -5,6 +5,12 @@ export class ChipInService {
 
   constructor() { }
 
+  filterResultList(resultList){
+    return resultList.filter((result) => {
+        return (result.amount > 0);
+    });
+  }
+
   count(personList){
     var resultList = [];
     var payerList = [];
@@ -35,7 +41,7 @@ export class ChipInService {
         }
       })
     })
-
+    resultList = this.filterResultList(resultList);
     return resultList;
   }
 }
