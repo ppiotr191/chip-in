@@ -68,5 +68,19 @@ describe('ChipInService', () => {
         {personID : 2, type : "lend", toPerson : 1, amount : 60},
         {personID : 3, type : "lend", toPerson : 1, amount : 60}
     ]);
+  })); 
+
+  it('1 payer, 2 borrower with other amount of cash', inject([ChipInService], (service: ChipInService) => {
+    var personList = [
+      {id : 1, name : "T1", price: 100, haveToPay : 50},
+      {id : 2, name : "T2", price: 0, haveToPay : 20},
+      {id : 3, name : "T3", price: 0, haveToPay : 30},
+    ];
+    var resultList = service.count(personList);
+    console.log(resultList);
+    expect(resultList).toEqual([
+        {personID : 2, type : "lend", toPerson : 1, amount : 20},
+        {personID : 3, type : "lend", toPerson : 1, amount : 30}
+    ]);
   }));
 });

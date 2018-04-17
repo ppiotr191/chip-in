@@ -17,15 +17,14 @@ export class ChipInService {
         borrowerList.push({person : person, haveToPayTmp : person.haveToPay - person.price});
       }
     });
-    
     payerList.map((payer) => {      
       borrowerList.map((borrower) => {
         let price = payer.priceTmp - borrower.haveToPayTmp;
         if (price > 0){
            let partialPrice = payer.priceTmp - price;
-           payer.priceTmp = partialPrice;
-           resultList.push({personID : borrower.person.id, type : 'lend', toPerson : payer.person.id, amount : partialPrice})
-           borrower.haveToPayTmp -= partialPrice; 
+           payer.priceTmp = price;
+           resultList.push({personID : borrower.person.id, type : 'lend', toPerson : payer.person.id, amount : borrower.haveToPayTmp})
+           borrower.haveToPayTmp = 0; 
         }
         else if (price <= 0){
           let partialPrice = payer.priceTmp;
